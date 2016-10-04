@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Reflection?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="client.Controller">
+   <children>
+      <MenuBar prefHeight="37.0" prefWidth="600.0">
+        <menus>
+          <Menu mnemonicParsing="false" text="QuizBot">
+            <items>
+                  <MenuItem mnemonicParsing="false" onAction="#connect" text="Info" />
+              <MenuItem mnemonicParsing="false" onAction="#disconnect" text="Close" />
+            </items>
+          </Menu>
+        </menus>
+         <effect>
+            <Reflection bottomOpacity="0.05" fraction="0.13" topOpacity="0.34" />
+         </effect>
+      </MenuBar>
+      <HBox layoutY="36.0" prefHeight="364.0" prefWidth="600.0">
+         <children>
+            <VBox prefHeight="364.0" prefWidth="99.0" styleClass="filler">
+               <children>
+                  <Label contentDisplay="CENTER" focusTraversable="false" prefHeight="21.0" prefWidth="134.0" styleClass="background" text="Adress" textAlignment="CENTER">
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="5.0" right="2.0" top="8.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="4.0" />
+                     </padding></Label>
+                  <TextField fx:id="txtAdress" prefHeight="19.0" prefWidth="126.0" text="localhost">
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+                     </VBox.margin></TextField>
+                  <Label focusTraversable="false" prefHeight="21.0" prefWidth="136.0" styleClass="background" text="Port">
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="4.0" />
+                     </padding></Label>
+                  <TextField fx:id="txtPort" text="7777">
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+                     </VBox.margin></TextField>
+                  <Label focusTraversable="false" prefHeight="21.0" prefWidth="103.0" styleClass="background" text="Nickname">
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="4.0" />
+                     </padding></Label>
+                  <TextField fx:id="txtUsername" prefHeight="37.0" prefWidth="155.0" styleClass="text-field" text="Client">
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
+                     </VBox.margin></TextField>
+                  <Label fx:id="lblValidation" prefHeight="46.0" prefWidth="99.0" textFill="#f20909" />
+                  <Button fx:id="btnConnect" mnemonicParsing="false" onAction="#connect" prefHeight="110.0" prefWidth="126.0" text="Connect">
+                     <VBox.margin>
+                        <Insets bottom="2.0" left="5.0" right="2.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="btnDisconnect" mnemonicParsing="false" onAction="#disconnect" prefHeight="110.0" prefWidth="99.0" styleClass="menu-bar" text="Disconnect">
+                     <VBox.margin>
+                        <Insets left="5.0" right="2.0" />
+                     </VBox.margin></Button>
+                  <Button fx:id="btnExit" mnemonicParsing="false" onAction="#exitApp" prefHeight="110.0" prefWidth="126.0" text="Exit">
+                     <VBox.margin>
+                        <Insets bottom="8.0" left="5.0" right="2.0" />
+                     </VBox.margin></Button>
+               </children>
+               <cursor>
+                  <Cursor fx:constant="DEFAULT" />
+               </cursor>
+            </VBox>
+            <Pane prefHeight="400.0" prefWidth="440.0">
+               <children>
+                  <VBox prefHeight="364.0" prefWidth="499.0">
+                     <children>
+                        <TextArea fx:id="txtChat" prefHeight="358.0" prefWidth="499.0" styleClass="text-field">
+                           <VBox.margin>
+                              <Insets bottom="8.0" left="5.0" right="5.0" top="8.0" />
+                           </VBox.margin>
+                        </TextArea>
+                        <HBox prefHeight="29.0" prefWidth="472.0">
+                           <children>
+                              <TextField fx:id="txtInput" onAction="#submit" prefHeight="57.0" prefWidth="382.0">
+                                 <HBox.margin>
+                                    <Insets bottom="8.0" left="5.0" right="5.0" top="5.0" />
+                                 </HBox.margin>
+                              </TextField>
+                              <Button fx:id="btnSubmit" mnemonicParsing="false" onAction="#submit" prefHeight="37.0" prefWidth="129.0" text="Send">
+                                 <HBox.margin>
+                                    <Insets bottom="8.0" right="5.0" top="5.0" />
+                                 </HBox.margin></Button>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
