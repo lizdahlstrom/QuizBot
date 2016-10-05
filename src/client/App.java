@@ -15,6 +15,7 @@ public class App extends Application {
 	private Socket socket;
 	private Thread connThread;
 	private Connection conn;
+	boolean isConnected = false;
 
 	private Controller mController;
 
@@ -49,10 +50,13 @@ public class App extends Application {
 
 	public void connectToServer(String name, int port, String adress) {
 		try {
-			socket = new Socket(adress, port);
-			conn = new Connection(name, socket, mController);
-			connThread = new Thread(conn);
-			connThread.start();
+			if (!isConnected) {
+				socket = new Socket(adress, port);
+				conn = new Connection(name, socket, mController);
+				connThread = new Thread(conn);
+				connThread.start();
+				isConnected = true;
+			}
 		} catch (UnknownHostException e) {
 			System.out.println("Unknow host exception...");
 			e.printStackTrace();

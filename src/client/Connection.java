@@ -29,7 +29,7 @@ public class Connection implements Runnable {
 			inputStream = new ObjectInputStream(socket.getInputStream());
 			postMsg(name);
 			while (true) {
-				mController.updateView((String) inputStream.readObject());
+				mController.updateView("> " + (String) inputStream.readObject());
 			}
 
 		} catch (UnknownHostException e) {

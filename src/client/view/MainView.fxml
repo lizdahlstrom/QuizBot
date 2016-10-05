@@ -9,6 +9,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.InnerShadow?>
 <?import javafx.scene.effect.Reflection?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -52,7 +53,7 @@
                      <padding>
                         <Insets left="4.0" />
                      </padding></Label>
-                  <TextField fx:id="txtPort" text="7777">
+                  <TextField fx:id="txtPort" text="8000">
                      <VBox.margin>
                         <Insets bottom="2.0" left="5.0" right="2.0" top="2.0" />
                      </VBox.margin></TextField>
@@ -74,7 +75,7 @@
                      </VBox.margin></Button>
                   <Button fx:id="btnDisconnect" mnemonicParsing="false" onAction="#disconnect" prefHeight="110.0" prefWidth="99.0" styleClass="menu-bar" text="Disconnect">
                      <VBox.margin>
-                        <Insets left="5.0" right="2.0" />
+                        <Insets bottom="2.0" left="5.0" right="2.0" />
                      </VBox.margin></Button>
                   <Button fx:id="btnExit" mnemonicParsing="false" onAction="#exitApp" prefHeight="110.0" prefWidth="126.0" text="Exit">
                      <VBox.margin>
@@ -89,7 +90,7 @@
                <children>
                   <VBox prefHeight="364.0" prefWidth="499.0">
                      <children>
-                        <TextArea fx:id="txtChat" prefHeight="358.0" prefWidth="499.0" styleClass="text-field">
+                        <TextArea fx:id="txtChat" editable="false" prefHeight="358.0" prefWidth="499.0" styleClass="text-field">
                            <VBox.margin>
                               <Insets bottom="8.0" left="5.0" right="5.0" top="8.0" />
                            </VBox.margin>
@@ -113,5 +114,15 @@
             </Pane>
          </children>
       </HBox>
+      <Label fx:id="lblTop" focusTraversable="false" layoutX="500.0" layoutY="5.0" prefHeight="24.0" prefWidth="92.0" style="-fx-font-size: 14;" text="Connected" textAlignment="CENTER" visible="false">
+         <effect>
+            <InnerShadow color="#00ffb4" />
+         </effect>
+      </Label>
+      <Label fx:id="lblTopD" focusTraversable="false" layoutX="500.0" layoutY="5.0" prefHeight="24.0" prefWidth="92.0" style="-fx-font-size: 14;" text="Disconnected" textAlignment="CENTER" visible="false">
+         <effect>
+            <InnerShadow color="#dfff00" />
+         </effect>
+      </Label>
    </children>
 </AnchorPane>

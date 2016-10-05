@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class Server {
 
-	private int port = 7777;
+	private int port = 8000;
 	private ServerSocket serverSocket;
 	private ArrayList<ClientThread> clients;
 	private Quiz game;
@@ -30,7 +30,8 @@ public class Server {
 					ClientThread clientThread = new ClientThread(clientSocket, this);
 					clients.add(clientThread);
 					clientThread.start();
-					broadCastMsg("Client has joined server, current clients: " + clients.size());
+					broadCastMsg(
+							clientThread.getClientName() + " has joined server, current clients: " + clients.size());
 					if (clients.size() == 2) {
 						// start game
 						game = new Quiz(clients);

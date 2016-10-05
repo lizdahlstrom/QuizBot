@@ -32,12 +32,17 @@ public class Controller {
 	@FXML
 	private Label lblValidation;
 	@FXML
+	private Label lblTop;
+	@FXML
+	private Label lblTopD;
+	@FXML
 	private Button btnExit;
 	@FXML
 	private Button btnDisconnect;
 
 	public void setMain(App app) {
 		this.app = app;
+		txtChat.setWrapText(true);
 	}
 
 	public void submit() {
@@ -54,23 +59,31 @@ public class Controller {
 		String port = txtPort.getText();
 		if (port.matches("[0-9]+") && port.length() > 2 && port.length() < 5) {
 			app.connectToServer(txtUsername.getText(), Integer.parseInt(port), txtAdress.getText());
+			setConnectedStatus(true);
 		} else {
 			lblValidation.setText("Invalid input");
 		}
 	}
 
-	public void disconnect() {
+	public void disconnect() throws IOException {
+		setConnectedStatus(false);
 		System.out.println("closing connection...");
+		app.getConnection().postMsg(".exit");
 	}
 
 	public void exitApp() throws IOException {
+		setConnectedStatus(false);
 		app.getConnection().postMsg(".exit");
 		Platform.exit();
 	}
 
 	public void updateView(String str) {
-		System.out.println("Updating txtChat");
 		txtChat.appendText(str + "\n");
+	}
 
+	private void setConnectedStatus(boolean bool) {
+		app.isConnected = bool;
+		lblTop.setVisible(bool);
+		lblTopD.setVisible(!bool);
 	}
 }

@@ -20,7 +20,7 @@ class ClientThread extends Thread {
 		score = 0;
 		outputStream = new ObjectOutputStream(socket.getOutputStream());
 		outputStream.writeObject(new String(
-				"Welcome to QuizBot Server! \nInstructions: .n to get a random question, .r to start quiz.\nType in the right answer within the time limit.\n2 players needed to play."));
+				"Welcome to QuizBot Server! \nInstructions:\n1. .n to get a random question\n2. .r to start quiz.\n3. .s to view current score.\nType in the right answer within the time limit.\n2 players needed to play."));
 		outputStream.flush();
 		inputStream = new ObjectInputStream(socket.getInputStream());
 		name = (String) inputStream.readObject();
@@ -36,6 +36,10 @@ class ClientThread extends Thread {
 
 			while (true) {
 				String ans = (String) inputStream.readObject();
+				if (ans.startsWith(".exit")) {
+					server.removeClient(this);
+					break;
+				}
 				System.out.println(name + ": " + ans);
 				server.broadCastMsg(name + ": " + ans);
 
@@ -55,10 +59,7 @@ class ClientThread extends Thread {
 						game.broadcastMsg(this.name + " just scored 1 point! Well done.");
 					}
 				}
-				if (ans.contains(".exit")) {
-					server.removeClient(this);
-					break;
-				}
+
 			}
 		} catch (ClassNotFoundException | IOException e) {
 			e.printStackTrace();
